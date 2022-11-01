@@ -79,7 +79,7 @@ namespace Holly_s_JSRDotNET_FormExample
                 PulserModel = pulserModel;
             }
 
-            ///<summary>Returns a string that represents th current object.</summary>
+            ///<summary>Returns a string that represents the current object.</summary>
             ///<returns>A string that represents the current object.</returns>
             ///<seealso cref="ModelName:System.Object.ToString()"/>
             ///
@@ -93,9 +93,9 @@ namespace Holly_s_JSRDotNET_FormExample
 
             ///<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the 
             ///current <see cref="T:System.Object"/>.</summary>
-            ///<param name="obj">The objecto to compare with the current object.</param>
-            ///<returns>True if the spcified <see cref="T:System.Object"/> is equal to the current
-            ///<see cref="T:System.Object"/>; otherwise false.</returns>
+            ///<param name="obj">The object to compare with the current object.</param>
+            ///<returns>True if the spcified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; 
+            ///otherwise false.</returns>
             ///<seealso cref="M:System.Object.Equals(object)"/>
             ///
             public override bool Equals(object obj)
@@ -294,7 +294,7 @@ namespace Holly_s_JSRDotNET_FormExample
             cboxTrigSrc.Enabled = bEnable;
             ckboxTriggerEnable.Enabled = bEnable;
             cbLEDBlink.Enabled = bEnable;
-            //Enabled receiver mode check box
+            //Added receiver mode check box
             cbReceiverMode.Enabled = bEnable;
             if (!bEnable)
             {
@@ -332,7 +332,7 @@ namespace Holly_s_JSRDotNET_FormExample
 
             if (CurrentlySelectedPulserIsReady)
             {
-                //Lock out event handlers from responding whilewe programmatically change controls
+                //Lock out event handlers from responding while we programmatically change controls
                 m_bLoadingControls = true;
                 SetControlsEnable(true);
                 
@@ -561,9 +561,9 @@ namespace Holly_s_JSRDotNET_FormExample
         }
 
         /// <summary>
-        /// When the pulser source is internal and trigger enable is checked, the pulser is actively pulsing
-        /// Red indicator shown when the pulser is actively pulsing
-        /// If not active, the grey image is displayed
+        /// This method checks whether the pulser is actively pulsing. If the pulser source is internal
+        /// and the trigger enable box is checked, the pulser is actively pusling and we display the redPulsingImage.
+        /// If the pulser receiver is not actively pusling, the grey image is displayed.
         /// </summary>
         private void IsPulserPulsing()
         {
@@ -578,9 +578,9 @@ namespace Holly_s_JSRDotNET_FormExample
         }
 
         /// <summary>
-        /// Pulser power limit status based on PRF and Energy per pulse.
-        /// If the power limit is exceeded the red indicator is shown
-        /// Otherwise, the green indicator is shown
+        /// Pulser power limit status is based on (PRF * Energy per pulse).
+        /// If the pulser receiver exceeds the power limit, the redPowerLimitStatusImage is shown.
+        /// Otherwise, the green image is displayed, indicating the pulser power limit is satisfactory.
         /// </summary>
         /// <returns></returns>
         private void PowerLimitStatusReached()
@@ -1021,6 +1021,11 @@ namespace Holly_s_JSRDotNET_FormExample
         //The remainder of the code has been added to support the new controls added to the application
         //Need to add the documentation, but the event handlers are fairly self explanatory
 
+        /// <summary>
+        /// Event handler. Called by cbReceiverMode for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbReceiverMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1039,6 +1044,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbLowPassFilter for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbLowPassFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1057,6 +1067,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbHighPassFilter for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbHighPassFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1075,6 +1090,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbboxVoltageSupplyEnable for checked change events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ckboxVoltageSupplyEnable_CheckedChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1091,6 +1111,11 @@ namespace Holly_s_JSRDotNET_FormExample
 
         }
 
+        /// <summary>
+        /// Event handler. Called by cbPulserVoltage for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbPulserVoltage_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1110,6 +1135,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbPulserEnergy for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbPulserEnergy_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1131,6 +1161,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbDamping for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbDamping_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1149,6 +1184,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbTriggerInputImpedance for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbTriggerInputImpedance_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1167,6 +1207,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by cbTriggerEdgePolarity for selected index changed events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbTriggerEdgePolarity_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
@@ -1185,6 +1230,11 @@ namespace Holly_s_JSRDotNET_FormExample
             }
         }
 
+        /// <summary>
+        /// Event handler. Called by trackbarPRF for scroll events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackbarPRF_Scroll(object sender, EventArgs e)
         {
             if (!m_bLoadingControls && m_jsrManager.IsPulserReceiverSelected)
